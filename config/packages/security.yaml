@@ -27,8 +27,8 @@ security:
     
     # Access control configuration
     access_control:
-        - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api/register, roles: PUBLIC_ACCESS }
-        - { path: ^/api/(video|editor|category)/game$, methods: [GET], roles: PUBLIC_ACCESS }
-        - { path: ^/api/(video|editor|category)/\d+$, methods: [GET], roles: PUBLIC_ACCESS }
-        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/api/login, roles: PUBLIC_ACCESS }
+    - { path: ^/api/register, roles: PUBLIC_ACCESS }
+    - { path: ^/api/v1/(video|editor|category)/game$, methods: [GET], roles: PUBLIC_ACCESS }
+    - { path: ^/api/v1/(video|editor|category)/\d+$, methods: [GET], roles: PUBLIC_ACCESS }
+    - { path: ^/api, roles: PUBLIC_ACCESS }

@@ -191,4 +191,9 @@ class UsersController extends AbstractController
 
         return $this->json(null, Response::HTTP_NO_CONTENT);
     }
+    #[Route('/api/test', name: 'api_test', methods: ['GET'])]
+public function test(): JsonResponse
+{
+    return new JsonResponse(['message' => 'Test API', 'status' => 'OK']);
+}
 }
