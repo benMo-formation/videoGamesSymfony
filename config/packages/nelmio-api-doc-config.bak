@@ -1,0 +1,82 @@
+# config/packages/nelmio_api_doc.yaml
+nelmio_api_doc:
+    documentation:
+        info:
+            title: API de Jeux Vidéo
+            description: API de gestion de jeux vidéo, catégories et éditeurs
+            version: 1.0.0
+        
+        components:
+            securitySchemes:
+                Bearer:
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT
+        
+        security:
+            - Bearer: []
+        
+        paths:
+            /api/login:
+                post:
+                    tags:
+                        - Authentication
+                    summary: Authentification pour obtenir un token JWT
+                    requestBody:
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        username:
+                                            type: string
+                                        password:
+                                            type: string
+                                    required:
+                                        - username
+                                        - password
+                    responses:
+                        '200':
+                            description: Authentification réussie
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            token:
+                                                type: string
+                                            user:
+                                                type: string
+                        '401':
+                            description: Authentification échouée
+            
+            /api/register:
+                post:
+                    tags:
+                        - Authentication
+                    summary: Inscription d'un nouvel utilisateur
+                    requestBody:
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        username:
+                                            type: string
+                                        password:
+                                            type: string
+                                        email:
+                                            type: string
+                                    required:
+                                        - username
+                                        - password
+                                        - email
+                    responses:
+                        '201':
+                            description: Utilisateur créé avec succès
+                        '400':
+                            description: Données invalides
+    
+    areas:
+        path_patterns:
+            - ^/api(?!/doc$)

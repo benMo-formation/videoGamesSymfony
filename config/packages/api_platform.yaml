@@ -1,0 +1,31 @@
+# config/packages/api_platform.yaml
+api_platform:
+    title: 'API de Jeux Vidéo'
+    description: 'API pour gérer des jeux vidéo, des catégories et des éditeurs'
+    version: '1.0.0'
+    
+    # Le schéma des URL de l'API et de sa documentation
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']
+        
+    # Configuration pour que toutes nos entités soient exposées via l'API
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+        
+    # Configuration du format d'entrée/sortie
+    formats:
+        jsonld:
+            mime_types: ['application/ld+json']
+        json:
+            mime_types: ['application/json']
+        html:
+            mime_types: ['text/html']
+            
+    # Documentation Swagger/OpenAPI
+    swagger:
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
